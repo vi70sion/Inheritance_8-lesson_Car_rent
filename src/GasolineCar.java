@@ -4,6 +4,12 @@ public class GasolineCar extends Car{
         super(make, model, year, dayPrice);
     }
 
-
+    public double getLitersKm() {
+        return litersKm;
+    }
+    @Override
+    public String toString() {
+        return getMake() + " " + getModel() + " " + getYear() + " " + getDayPrice() + " " + getLitersKm();
+    }
 
 }

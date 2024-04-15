@@ -9,5 +9,19 @@ public class Car {
         this.dayPrice = dayPrice;
     }
 
+    public String getMake() { return make;}
+    public double getDayPrice() { return dayPrice;}
 
+    public String getModel() {
+        return model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    @Override
+    public String toString() {
+        return make + " " + model + " " + year + " " + dayPrice;
+    }
 }
