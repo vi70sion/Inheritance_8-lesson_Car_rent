@@ -12,5 +12,4 @@ public class CarDataModifier {
         car.setKwKm(kwKm);
     }
 
-
 }

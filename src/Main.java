@@ -27,7 +27,8 @@ public class Main {
         do{
             System.out.println("Pasirinkite veiksmą: ");
             System.out.println("(1)- aprašyti automobilį, (2)- pridėti automobilį į sąrašą nuomai, (3)- išnuomoti automobilį,");
-            System.out.println("(4)- spausdinti automobilių sąrašą, (5)- pakeisti kuro parametrus, (0)- pabaiga");
+            System.out.println("(4)- spausdinti automobilių sąrašą, (5)- pakeisti kuro parametrus, ");
+            System.out.println("(6)- pridėti klientą, (0)- pabaiga");
             choice = scanner.nextLine();
             switch (choice){
                 case "1":
@@ -91,6 +92,11 @@ public class Main {
                         }
                     }
                     scanner.nextLine();
+                    break;
+                case "6":
+                    System.out.println("Įveskite klientą (vardas pavardė):");
+
+
                     break;
                 case "0":
                     break;
