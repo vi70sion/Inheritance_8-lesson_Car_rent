@@ -20,13 +20,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Car car = new Car("", "", 0, 0);
         Rental rental = new Rental();
+        CarDataModifier modifier = new CarDataModifier();
         String choice = "";
         String carType = "";
         int daysRent;
         do{
             System.out.println("Pasirinkite veiksmą: ");
             System.out.println("(1)- aprašyti automobilį, (2)- pridėti automobilį į sąrašą nuomai, (3)- išnuomoti automobilį,");
-            System.out.println("(4)- spausdinti automobilių sąrašą, (0)- pabaiga");
+            System.out.println("(4)- spausdinti automobilių sąrašą, (5)- pakeisti kuro parametrus, (0)- pabaiga");
             choice = scanner.nextLine();
             switch (choice){
                 case "1":
@@ -76,6 +77,20 @@ public class Main {
                         System.out.println(car1);
                         //System.out.println((GasolineCar)car1);
                     }
+                    break;
+                case "5":
+                    System.out.println("Pakeisti automobilio kuro parametrą:");
+                    for(Car car1 : rental.getRentalList()){
+                        System.out.println(car1);
+                        System.out.println("Įveskite naują kuro parametrą: ");
+                        if(car1 instanceof GasolineCar){
+                            modifier.changeParameter((GasolineCar) car1, scanner.nextDouble());
+                        }
+                        if(car1 instanceof ElectricCar){
+                            modifier.changeParameter((ElectricCar) car1, scanner.nextDouble());
+                        }
+                    }
+                    scanner.nextLine();
                     break;
                 case "0":
                     break;
