@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Customer {
 //    Sukurti klasę klientas - Vardas, Pavardė, Dabar Nuomojamas Automobilis, Paskutinis Nuomotas Automobilis,
@@ -11,15 +13,7 @@ public class Customer {
 
     private String nameSurname;
     private Car nowRentCar, lastRentCar;
-    private List<String> customersList = new ArrayList<>();
-
-    public List<String> getCustomersList() { return customersList;}
-
-    public void addCustomer(String nameSurname) {
-        this.customersList.add(nameSurname);
-    }
-    public void setCarToClient(List customersList, Car car){
+    private Map<Customer,Car> rentedCarList = new HashMap<>();
 
 
-    }
 }

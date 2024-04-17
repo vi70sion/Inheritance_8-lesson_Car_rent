@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,6 +23,7 @@ public class Main {
         Car car = new Car("", "", 0, 0);
         Rental rental = new Rental();
         CarDataModifier modifier = new CarDataModifier();
+        List<String> customersList = new ArrayList<>();
         String choice = "";
         String carType = "";
         int daysRent;
