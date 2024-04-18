@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -107,23 +108,30 @@ public class Main {
                         System.out.println(car1);
                         index++;
                     }
-                    System.out.println("Įveskite dabar nuomojamą automobilį (numeris):");
-                    index = Integer.parseInt(scanner.nextLine());
-                    if(index > 0 && index <= rental.getRentalList().size()){
-                        customer.setNowRentCar(rental.getRentalList().get(index-1));
-                    } else {System.out.println("Neteisingas įvedimas.");break;}
-
                     System.out.println("Įveskite paskutinį nuomotą automobilį (numeris):");
                     index = Integer.parseInt(scanner.nextLine());
                     if(index > 0 && index <= rental.getRentalList().size()){
                         customer.setLastRentCar(rental.getRentalList().get(index-1));
                     } else {System.out.println("Neteisingas įvedimas.");break;}
 
-                    customersList.add(customer);
+                    System.out.println("Įveskite kiek dienų nuomosis dabartinį automobilį: ");
+                    daysRent = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Įveskite dabar nuomojamą automobilį (numeris):");
+                    index = Integer.parseInt(scanner.nextLine());
+                    if(index > 0 && index <= rental.getRentalList().size()){
+                        customer.setNowRentCar(rental.getRentalList().get(index-1));
+                        customer.setDaysRent(daysRent);
+                        customer.getRentedCarList().put(rental.getRentalList().get(index-1), daysRent);  //add the rented customer and car to a new list
+                        rental.getRentalList().remove(index-1);  //remove rented car from all cars list
+                    } else {System.out.println("Neteisingas įvedimas.");break;}
 
-                    for(Customer cust : customersList){
+                    customersList.add(customer);
+                    for(Customer cust : customersList){  //print customer list
                         System.out.println(cust.toString());
                     }
+                    System.out.println("Išnuomotų automobilių sąrašas:");
+                    customer.printRentedCarList();  //print rented car list
 
                     break;
                 case "0":
