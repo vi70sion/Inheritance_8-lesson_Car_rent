@@ -23,7 +23,8 @@ public class Main {
         Car car = new Car("", "", 0, 0);
         Rental rental = new Rental();
         CarDataModifier modifier = new CarDataModifier();
-        List<String> customersList = new ArrayList<>();
+        Customer customer;
+        List<Customer> customersList = new ArrayList<>();
         String choice = "";
         String carType = "";
         int daysRent;
@@ -31,7 +32,7 @@ public class Main {
             System.out.println("Pasirinkite veiksmą: ");
             System.out.println("(1)- aprašyti automobilį, (2)- pridėti automobilį į sąrašą nuomai, (3)- išnuomoti automobilį,");
             System.out.println("(4)- spausdinti automobilių sąrašą, (5)- pakeisti kuro parametrus, ");
-            System.out.println("(6)- pridėti klientą, (0)- pabaiga");
+            System.out.println("(6)- pridėti klientą, priskirti automobilius (0)- pabaiga");
             choice = scanner.nextLine();
             switch (choice){
                 case "1":
@@ -65,7 +66,7 @@ public class Main {
                     System.out.println("Kuriam laikotarpiui (dienomis) norėtumėte nuomotis automobilį: ");
                     daysRent = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Pasirinkite automobilį: ");
+                    System.out.println("Pasirinkite automobilį (markė): ");
                     int i = 1;
                     for(Car car1 : rental.getRentalList()){
                         System.out.print("(" + i++ + ") ");
@@ -97,8 +98,32 @@ public class Main {
                     scanner.nextLine();
                     break;
                 case "6":
+                    customer = new Customer();
                     System.out.println("Įveskite klientą (vardas pavardė):");
+                    customer.setNameSurname(scanner.nextLine());
+                    int index = 1;
+                    for(Car car1 : rental.getRentalList()){
+                        System.out.print(index + ". ");
+                        System.out.println(car1);
+                        index++;
+                    }
+                    System.out.println("Įveskite dabar nuomojamą automobilį (numeris):");
+                    index = Integer.parseInt(scanner.nextLine());
+                    if(index > 0 && index <= rental.getRentalList().size()){
+                        customer.setNowRentCar(rental.getRentalList().get(index-1));
+                    } else {System.out.println("Neteisingas įvedimas.");break;}
 
+                    System.out.println("Įveskite paskutinį nuomotą automobilį (numeris):");
+                    index = Integer.parseInt(scanner.nextLine());
+                    if(index > 0 && index <= rental.getRentalList().size()){
+                        customer.setLastRentCar(rental.getRentalList().get(index-1));
+                    } else {System.out.println("Neteisingas įvedimas.");break;}
+
+                    customersList.add(customer);
+
+                    for(Customer cust : customersList){
+                        System.out.println(cust.toString());
+                    }
 
                     break;
                 case "0":
