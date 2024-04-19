@@ -11,11 +11,9 @@ public class Car {
 
     public String getMake() { return make;}
     public double getDayPrice() { return dayPrice;}
-
     public String getModel() {
         return model;
     }
-
     public int getYear() {
         return year;
     }

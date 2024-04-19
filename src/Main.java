@@ -24,7 +24,7 @@ public class Main {
         Car car = new Car("", "", 0, 0);
         Rental rental = new Rental();
         CarDataModifier modifier = new CarDataModifier();
-        Customer customer;
+        Customer customer = new Customer();
         List<Customer> customersList = new ArrayList<>();
         String choice = "";
         String carType = "";
@@ -33,7 +33,7 @@ public class Main {
             System.out.println("Pasirinkite veiksmą: ");
             System.out.println("(1)- aprašyti automobilį, (2)- pridėti automobilį į sąrašą nuomai, (3)- išnuomoti automobilį,");
             System.out.println("(4)- spausdinti automobilių sąrašą, (5)- pakeisti kuro parametrus, ");
-            System.out.println("(6)- pridėti klientą, priskirti automobilius (0)- pabaiga");
+            System.out.println("(6)- pridėti klientą, priskirti automobilius, (7)- grąžinti automobilį, (0)- pabaiga");
             choice = scanner.nextLine();
             switch (choice){
                 case "1":
@@ -130,6 +130,19 @@ public class Main {
                     for(Customer cust : customersList){  //print customer list
                         System.out.println(cust.toString());
                     }
+                    System.out.println("Išnuomotų automobilių sąrašas:");
+                    customer.printRentedCarList();  //print rented car list
+
+                    break;
+                case "7":
+                    System.out.println("Išnuomotų automobilių sąrašas:");
+                    customer.printRentedCarListForReturn();  //print rented car list
+                    System.out.println("Pasirinkite, kurį automobilį grąžinsite (numeris):");
+                    index = Integer.parseInt(scanner.nextLine());
+                    if(index > 0 && index <= rental.getRentalList().size()){
+                        rental.addCarToList(customer.getRentedCarList().get(index-1));
+                    } else {System.out.println("Neteisingas įvedimas.");break;}
+
                     System.out.println("Išnuomotų automobilių sąrašas:");
                     customer.printRentedCarList();  //print rented car list
 

@@ -34,4 +34,11 @@ public class Customer {
             System.out.println(entry.getKey() + ", nuomojasi dienų: " + entry.getValue());
         }
     }
+    public void printRentedCarListForReturn(){
+        int i = 1;
+        for(Map.Entry<Car, Integer> entry : rentedCarList.entrySet()){
+            System.out.println(i + " . " + entry.getKey().getMake() + " " + entry.getKey().getModel() + " " + entry.getKey().getYear());
+            i++;
+        }
+    }
 }
