@@ -41,4 +41,16 @@ public class Customer {
             i++;
         }
     }
+    public Car getReturnedCar(int index){
+        int i = 1;
+        Car car = null;
+        for(Map.Entry<Car, Integer> entry : rentedCarList.entrySet()){
+            if(i == index){
+                car = entry.getKey();
+                return car;
+            }
+            i++;
+        }
+        return car;
+    }
 }

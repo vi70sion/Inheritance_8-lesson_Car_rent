@@ -29,11 +29,16 @@ public class Main {
         String choice = "";
         String carType = "";
         int daysRent;
+
+        rental.addCarToList(new GasolineCar("ford", "mustang", 2020, 150.00, 15.00));
+        rental.addCarToList(new ElectricCar("tesla", "y", 2021, 200.00, 18.00));
+        rental.addCarToList(new GasolineCar("chevrolet", "camaro", 2018, 180.00, 20.00));
+
         do{
             System.out.println("Pasirinkite veiksmą: ");
             System.out.println("(1)- aprašyti automobilį, (2)- pridėti automobilį į sąrašą nuomai, (3)- išnuomoti automobilį,");
             System.out.println("(4)- spausdinti automobilių sąrašą, (5)- pakeisti kuro parametrus, ");
-            System.out.println("(6)- pridėti klientą, priskirti automobilius, (7)- grąžinti automobilį, (0)- pabaiga");
+            System.out.println("(6)- pridėti klientą, priskirti automobilius, (7)- grąžinti automobilį, (8)- išnuomotų automobilių sąrašas, (0)- pabaiga");
             choice = scanner.nextLine();
             switch (choice){
                 case "1":
@@ -139,13 +144,20 @@ public class Main {
                     customer.printRentedCarListForReturn();  //print rented car list
                     System.out.println("Pasirinkite, kurį automobilį grąžinsite (numeris):");
                     index = Integer.parseInt(scanner.nextLine());
+
                     if(index > 0 && index <= rental.getRentalList().size()){
-                        rental.addCarToList(customer.getRentedCarList().get(index-1));
+                        rental.addCarToList(customer.getReturnedCar(index));    //return car from rented car list to all cars list
+                        customer.getRentedCarList().remove(customer.getReturnedCar(index));  //remove car from rented car list
                     } else {System.out.println("Neteisingas įvedimas.");break;}
+
 
                     System.out.println("Išnuomotų automobilių sąrašas:");
                     customer.printRentedCarList();  //print rented car list
 
+                    break;
+                case "8":
+                        System.out.println("Išnuomotų automobilių sąrašas:");
+                        customer.printRentedCarList();  //print rented car list
                     break;
                 case "0":
                     break;
